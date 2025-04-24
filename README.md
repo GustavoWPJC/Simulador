@@ -38,6 +38,12 @@ simulador/
 - **ModoOperacao**: enumeração com: CICLO_FIXO, TEMPO_ESPERA, CONSUMO.
 - **HeuristicaControle**: lógica adaptativa de controle dos semáforos.
 
+## Mapa de Teresina
+Segue o link para o repositório do Lucas que desenvolveu um conversor de mapa do OpenStreeMap em Python. Ele extrai o mapa e o converte para JSON. Dessa forma, o JAVA consegue ler e criar o grafo com as ruas e os cruzamentos da cidade para uso. No repositório dele há instruções de como utilizar.
+Link: https://github.com/lucazolvr/Grafo-Teresina
+
+Deixo aqui meus agradecimentos ao @lucazolvr     =)
+
 ## O que não está implementado
 
 - As **estruturas internas do grafo, filas e listas** devem ser implementadas pelos alunos.
