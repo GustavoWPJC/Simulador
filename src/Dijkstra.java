@@ -1,3 +1,7 @@
+import cidade.GrafoTransito;
+import cidade.Rua;
+import cidade.Sinal;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;

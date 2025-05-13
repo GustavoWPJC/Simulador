@@ -1,6 +1,9 @@
+/*import cidade.GrafoTransito;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import cidade.Sinal;
 
 public class GerenciadorVeiculos {
     private List<Veiculo> veiculos;
@@ -24,10 +27,11 @@ public class GerenciadorVeiculos {
             }
 
             try {
-                Thread.sleep(3000); // Simulação em tempo real
+                Thread.sleep(3000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 }
+*/

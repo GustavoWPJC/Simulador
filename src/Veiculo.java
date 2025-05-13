@@ -1,4 +1,6 @@
-import Semaforo.Semaforo; // Semaforo está dentro de src/Semaforo
+/*import cidade.GrafoTransito;
+import cidade.Sinal;
+
 import java.util.List; // Para listas
 
 public class Veiculo {
@@ -16,7 +18,7 @@ public class Veiculo {
         List<Sinal> caminho = Dijkstra.encontrarMenorCaminho(grafo, localizacaoAtual, destino);
 
         for (Sinal proximoSinal : caminho) {
-            if (proximoSinal.temSemaforo() && !proximoSinal.getSemaforo().getCorAtual().equals(Semaforo.Cor.VERDE)) {
+            if (proximoSinal.temSemaforo() && !proximoSinal.getSemaforo().getCorAtual().equals(semaforo.Cor.VERDE)) {
                 System.out.println("[Veículo " + id + "] 🚦 Aguardando semáforo verde em " + proximoSinal.getId());
                 return;
             }
@@ -28,3 +30,4 @@ public class Veiculo {
         System.out.println("[Veículo " + id + "] 🏁 Chegou ao destino!");
     }
 }
+*/

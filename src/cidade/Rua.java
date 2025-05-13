@@ -1,3 +1,5 @@
+package cidade;
+
 public class Rua {
     public String id;
     public Sinal origem;

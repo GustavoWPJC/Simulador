@@ -1,3 +1,5 @@
+package cidade;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -14,16 +16,15 @@ public class GeradorKML {
                 writer.write("<Placemark>\n");
                 writer.write("<name>" + sinal.getId() + "</name>\n");
 
-                // Define ícone baseado na existência de semáforo
                 if (sinal.temSemaforo()) {
-                    writer.write("<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>\n");
-                } else {
-                    writer.write("<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/grn-circle.png</href></Icon></IconStyle></Style>\n");
+                    String cor = sinal.getSemaforo().getEstadoAtual().equals("VERDE") ? "grn-circle.png" : "red-circle.png";
+                    writer.write("<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/" + cor + "</href></Icon></IconStyle></Style>\n");
                 }
 
                 writer.write("<Point><coordinates>" + sinal.getLongitude() + "," + sinal.getLatitude() + ",0</coordinates></Point>\n");
                 writer.write("</Placemark>\n");
             }
+
 
 
             writer.write("</Document>\n</kml>");

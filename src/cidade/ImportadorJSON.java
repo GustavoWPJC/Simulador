@@ -1,8 +1,11 @@
+package cidade;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+
 import org.json.*;
-import Semaforo.Semaforo;
+import semaforo.Semaforo;
 
 
 public class ImportadorJSON {

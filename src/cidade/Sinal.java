@@ -1,6 +1,9 @@
+package cidade;
+
+import semaforo.Semaforo;
 import java.util.ArrayList;
 import java.util.List;
-import Semaforo.Semaforo;
+
 
 public class Sinal {
     private String id;
@@ -54,4 +57,7 @@ public class Sinal {
     public void exibirSemaforo() {
         if (temSemaforo()) semaforo.exibirEstado();
     }
+
+
+
 }
