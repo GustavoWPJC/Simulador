@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Sinal {
+public class Intersecao {
     private String id;
     private double latitude;
     private double longitude;
     private List<Rua> ruasConectadas;
     private Semaforo semaforo; // Semáforo opcional
 
-    public Sinal(String id, double latitude, double longitude) {
+    public Intersecao(String id, double latitude, double longitude) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;

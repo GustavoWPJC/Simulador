@@ -10,7 +10,7 @@ import semaforo.Semaforo;
 
 public class ImportadorJSON {
 
-    public static Map<String, Sinal> sinais = new HashMap<>();
+    public static Map<String, Intersecao> sinais = new HashMap<>();
     public static List<Rua> ruas = new ArrayList<>();
 
     // Lista manual de sinais que terão semáforo
@@ -29,14 +29,14 @@ public class ImportadorJSON {
             String id = n.getString("id");
             double lat = n.getDouble("latitude");
             double lon = n.getDouble("longitude");
-            Sinal sinal = new Sinal(id, lat, lon);
+            Intersecao intersecao = new Intersecao(id, lat, lon);
 
             // Adiciona semáforo apenas nos sinais escolhidos manualmente
             if (sinaisComSemaforo.contains(id)) {
-                sinal.setSemaforo(new Semaforo(4, 2, 6)); // Configuração padrão
+                intersecao.setSemaforo(new Semaforo(4, 2, 6)); // Configuração padrão
             }
 
-            sinais.put(id, sinal);
+            sinais.put(id, intersecao);
         }
 
         // Processamento das ruas (edges)
@@ -49,8 +49,8 @@ public class ImportadorJSON {
             double velocidade = e.optDouble("maxspeed", 50.0); // Ajustado para "maxspeed"
             double tempo = comprimento / velocidade;
 
-            Sinal origem = sinais.get(origemId);
-            Sinal destino = sinais.get(destinoId);
+            Intersecao origem = sinais.get(origemId);
+            Intersecao destino = sinais.get(destinoId);
 
             if (origem != null && destino != null) { // Evita NullPointerException
                 Rua rua = new Rua("R" + i, origem, destino, comprimento, velocidade);

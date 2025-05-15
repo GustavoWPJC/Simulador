@@ -1,12 +1,12 @@
 package semaforo;
 import java.util.List;
-import cidade.Sinal;
+import cidade.Intersecao;
 
 
 public class ControladorSemaforos {
-    private List<Sinal> sinais;
+    private List<Intersecao> sinais;
 
-    public ControladorSemaforos(List<Sinal> sinais) {
+    public ControladorSemaforos(List<Intersecao> sinais) {
         this.sinais = sinais;
     }
 
@@ -15,9 +15,9 @@ public class ControladorSemaforos {
             System.out.println("\n⏳ Tempo: " + tempo + " segundos");
 
             // Alterna estados dos semáforos nos cruzamentos
-            for (Sinal sinal : sinais) {
-                sinal.atualizarSemaforo(tempo);
-                System.out.println("🚦 Semáforo no sinal " + sinal.getId() + " está " + sinal.getSemaforo().getEstadoAtual());
+            for (Intersecao intersecao : sinais) {
+                intersecao.atualizarSemaforo(tempo);
+                System.out.println("🚦 Semáforo no sinal " + intersecao.getId() + " está " + intersecao.getSemaforo().getEstadoAtual());
             }
 
             try { Thread.sleep(5000); } catch (InterruptedException e) { e.printStackTrace(); }

@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GrafoTransito {
-    public Map<String, Sinal> sinais = new HashMap<>(); // Agora são atributos da classe
+    public Map<String, Intersecao> sinais = new HashMap<>(); // Agora são atributos da classe
     public Map<String, Rua> ruas = new HashMap<>();
 
-    public Map<String, Sinal> getSinais() {
+    public Map<String, Intersecao> getSinais() {
         return sinais;
     }
 
@@ -35,7 +35,7 @@ public class GrafoTransito {
                 double latitude = node.getDouble("latitude");
                 double longitude = node.getDouble("longitude");
 
-                sinais.put(idSinal, new Sinal(idSinal, latitude, longitude));
+                sinais.put(idSinal, new Intersecao(idSinal, latitude, longitude));
             }
 
             // Criando ruas e conectando aos sinais

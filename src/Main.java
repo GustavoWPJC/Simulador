@@ -3,11 +3,10 @@ import java.util.ArrayList;
 
 import cidade.GeradorKML;
 import cidade.GrafoTransito;
-import cidade.Sinal;
+import cidade.Intersecao;
 import semaforo.ControladorSemaforos;
 
 import semaforo.Semaforo;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -17,26 +16,26 @@ public class Main {
             grafo.carregarDados("src/cidade/teresina1.json");
 
             // 🔹 Definir manualmente quais sinais terão semáforo
-            List<Sinal> sinaisComSemaforo = new ArrayList<>();
+            List<Intersecao> sinaisComSemaforo = new ArrayList<>();
 
-            String[] idsCruzamento1 = { "590497440", "596497981" }; // Cruzamento 1
-            String[] idsCruzamento2 = { "604381281", "9237851142" }; // Cruzamento 2
+            String[] idsCruzamento1 = { "1555757125", "1555757135" }; // Cruzamento 1
+            String[] idsCruzamento2 = { "2142438848", "2142438843" }; // Cruzamento 2
 
             for (String id : idsCruzamento1) {
-                Sinal sinal = grafo.getSinais().get(id);
-                if (sinal != null) {
+                Intersecao intersecao = grafo.getSinais().get(id);
+                if (intersecao != null) {
                     Semaforo semaforo = new Semaforo(6, 2, 6);
-                    sinal.setSemaforo(semaforo);
-                    sinaisComSemaforo.add(sinal);
+                    intersecao.setSemaforo(semaforo);
+                    sinaisComSemaforo.add(intersecao);
                 }
             }
 
             for (String id : idsCruzamento2) {
-                Sinal sinal = grafo.getSinais().get(id);
-                if (sinal != null) {
+                Intersecao intersecao = grafo.getSinais().get(id);
+                if (intersecao != null) {
                     Semaforo semaforo = new Semaforo(6, 2, 6);
-                    sinal.setSemaforo(semaforo);
-                    sinaisComSemaforo.add(sinal);
+                    intersecao.setSemaforo(semaforo);
+                    sinaisComSemaforo.add(intersecao);
                 }
             }
 
@@ -49,12 +48,9 @@ public class Main {
 
 
             // 🔹 Gerar o KML com os dados importados
-            List<Sinal> OutralistaSinais = new ArrayList<>(grafo.getSinais().values());
-
+            List<Intersecao> OutralistaSinais = new ArrayList<>(grafo.getSinais().values());
             String caminhoArquivo = "/home/vini/Desktop/Simulador/mapa.kml";
             GeradorKML.gerarKML(OutralistaSinais, caminhoArquivo);
-
-
             System.out.println("✅ Arquivo KML gerado com sucesso!");
 
         } catch (Exception e) {

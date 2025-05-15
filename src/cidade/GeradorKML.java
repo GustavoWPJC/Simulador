@@ -6,22 +6,22 @@ import java.util.List;
 
 public class GeradorKML {
 
-    public static void gerarKML(List<Sinal> sinais, String nomeArquivo) {
+    public static void gerarKML(List<Intersecao> sinais, String nomeArquivo) {
         try (FileWriter writer = new FileWriter(nomeArquivo)) {
             writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
             writer.write("<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n");
             writer.write("<Document>\n");
 
-            for (Sinal sinal : sinais) {
+            for (Intersecao intersecao : sinais) {
                 writer.write("<Placemark>\n");
-                writer.write("<name>" + sinal.getId() + "</name>\n");
+                writer.write("<name>" + intersecao.getId() + "</name>\n");
 
-                if (sinal.temSemaforo()) {
-                    String cor = sinal.getSemaforo().getEstadoAtual().equals("VERDE") ? "grn-circle.png" : "red-circle.png";
+                if (intersecao.temSemaforo()) {
+                    String cor = intersecao.getSemaforo().getEstadoAtual().equals("VERDE") ? "grn-circle.png" : "red-circle.png";
                     writer.write("<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/" + cor + "</href></Icon></IconStyle></Style>\n");
                 }
 
-                writer.write("<Point><coordinates>" + sinal.getLongitude() + "," + sinal.getLatitude() + ",0</coordinates></Point>\n");
+                writer.write("<Point><coordinates>" + intersecao.getLongitude() + "," + intersecao.getLatitude() + ",0</coordinates></Point>\n");
                 writer.write("</Placemark>\n");
             }
 

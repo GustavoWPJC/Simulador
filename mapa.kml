@@ -15,6 +15,7 @@
 </Placemark>
 <Placemark>
 <name>2142438848</name>
+<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
 <Point><coordinates>-42.8063603,-5.0901577,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -59,6 +60,7 @@
 </Placemark>
 <Placemark>
 <name>1555757125</name>
+<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
 <Point><coordinates>-42.8075285,-5.0917381,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -95,6 +97,7 @@
 </Placemark>
 <Placemark>
 <name>2142438843</name>
+<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
 <Point><coordinates>-42.80562,-5.0917762,0</coordinates></Point>
 </Placemark>
 <Placemark>
@@ -151,6 +154,7 @@
 </Placemark>
 <Placemark>
 <name>1555757135</name>
+<Style><IconStyle><Icon><href>http://maps.google.com/mapfiles/kml/paddle/red-circle.png</href></Icon></IconStyle></Style>
 <Point><coordinates>-42.8071443,-5.0925304,0</coordinates></Point>
 </Placemark>
 </Document>
