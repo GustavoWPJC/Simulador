@@ -39,19 +39,33 @@ public class Sinal {
     public void setSemaforo(Semaforo semaforo) {
         this.semaforo = semaforo;
     }
+
     public Semaforo getSemaforo() {
         return semaforo;
     }
 
+    // 🔹 Método corrigido para verificar se o sinal possui semáforo
     public boolean temSemaforo() {
         return semaforo != null;
     }
 
+    public boolean estaVerde() {
+        return semaforo != null && semaforo.getCorAtual() == Semaforo.Cor.VERDE;
+    }
+
+
+    // 🔹 Correção no método de atualização do semáforo
     public void atualizarSemaforo(int tempo) {
-        if (temSemaforo()) semaforo.atualizar(tempo);
+        if (temSemaforo()) {
+            semaforo.atualizar(tempo);
+        }
     }
 
     public void exibirSemaforo() {
-        if (temSemaforo()) semaforo.exibirEstado();
+        if (temSemaforo()) {
+            System.out.println("🚦 Sinal " + id + " está " + semaforo.getCorAtual());
+        }
     }
+
+
 }

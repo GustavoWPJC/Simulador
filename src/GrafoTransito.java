@@ -1,13 +1,15 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GrafoTransito {
-    public Map<String, Sinal> sinais = new HashMap<>(); // Agora são atributos da classe
+    public Map<String, Sinal> sinais = new HashMap<>();
     public Map<String, Rua> ruas = new HashMap<>();
 
     public Map<String, Sinal> getSinais() {
@@ -17,7 +19,6 @@ public class GrafoTransito {
     public Map<String, Rua> getRuas() {
         return ruas;
     }
-
 
     public void carregarDados(String caminhoArquivo) {
         try {
@@ -46,11 +47,9 @@ public class GrafoTransito {
                 double comprimento = edge.getDouble("length");
                 double velocidadeMaxima = edge.getDouble("maxspeed");
 
-                // Criando a rua
                 Rua rua = new Rua(idRua, sinais.get(idOrigem), sinais.get(idDestino), comprimento, velocidadeMaxima);
                 ruas.put(idRua, rua);
 
-                // Conectando a rua aos sinais de origem e destino
                 sinais.get(idOrigem).conectarRua(rua);
                 sinais.get(idDestino).conectarRua(rua);
             }
@@ -60,5 +59,10 @@ public class GrafoTransito {
         } catch (IOException e) {
             System.err.println("❌ Erro ao ler o arquivo JSON: " + e.getMessage());
         }
+    }
+
+    // 🔹 Método para calcular a rota usando Dijkstra
+    public List<Sinal> calcularRota(Sinal origem, Sinal destino) {
+        return Dijkstra.encontrarMenorCaminho(this, origem, destino);
     }
 }
