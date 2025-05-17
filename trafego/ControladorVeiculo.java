@@ -2,9 +2,10 @@ package trafego;
 import semaforo.listener.Listener;
 
 
-public class GeradorVeiculos implements Listener {
+public class ControladorVeiculo implements Listener {
     private final int tempoGerarVeiculos = 3;
 
+    @Override
     public void aoDispararEvento(String tipoEvento, Object dados) {
         if (tipoEvento.equals("TICK")) {
             int tempo = (int) dados;
@@ -17,9 +18,4 @@ public class GeradorVeiculos implements Listener {
             }
         }
     }
-
-    public void gerar() {
-        System.out.println("Veículos gerados aleatoriamente.");
-    }
-
 }
