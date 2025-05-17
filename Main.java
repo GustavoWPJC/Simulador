@@ -1,4 +1,5 @@
 import semaforo.ControladorSemaforos;
+import trafego.ControladorVeiculo;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,6 +9,7 @@ public class Main {
 
         Simulador sim = new Simulador();
         sim.registrarListener(new ControladorSemaforos());
+        sim.registrarListener(new ControladorVeiculo());
         sim.iniciar();
     }
 }
