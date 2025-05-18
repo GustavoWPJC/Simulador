@@ -1,10 +1,16 @@
 package semaforo;
 
 import semaforo.listener.Listener;
+import java.util.List;
 
 public class ControladorSemaforos implements Listener {
 
-    Semaforo semaforo = new Semaforo(4, 2, 6);
+    private List<Semaforo> semaforos;
+
+    //Contrutor modificada para receber uma lista de semáforos
+    public ControladorSemaforos(List<Semaforo> semaforos){
+        this.semaforos = semaforos;
+    }
 
     public void aplicarControle() {
         System.out.println("Controle de semáforos aplicado.");
@@ -16,8 +22,11 @@ public class ControladorSemaforos implements Listener {
             int tempo = (int) dados;
             System.out.println("[Controlador] Verificando semáforos no minuto " + tempo);
 
-            semaforo.atualizar(tempo);
-            semaforo.exibirEstado();
+            //atualiza e exibe o estado de cada semáforo
+            for(Semaforo s : semaforos){
+                s.atualizar(tempo);
+                s.exibirEstado();
+            }
         }
     }
 }
