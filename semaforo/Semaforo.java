@@ -1,43 +1,50 @@
 package semaforo;
 
 public class Semaforo {
-
     public enum Cor {
         VERDE, AMARELO, VERMELHO
     }
 
     private String intersecaoId;
-    private int tempoVerde;
-    private int tempoAmarelo;
-    private int tempoVermelho;
-    private int offset;
+    private String grupo;
     private Cor corAtual;
+    private double latitude;
+    private double longitude;
 
-    public Semaforo(String intersecaoId, int verde, int amarelo, int vermelho, int offset) {
+    public Semaforo(String intersecaoId, String grupo, double latitude, double longitude) {
         this.intersecaoId = intersecaoId;
-        this.tempoVerde = verde;
-        this.tempoAmarelo = amarelo;
-        this.tempoVermelho = vermelho;
-        this.offset = offset;
-        this.corAtual = Cor.VERDE;
+        this.grupo = grupo;
+        this.corAtual = Cor.VERMELHO; // Estado inicial
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public void atualizar(int tempo) {
-        int cicloTotal = tempoVerde + tempoAmarelo + tempoVermelho;
-        //Considera o offset para o ciclo não comece do zeo para todos os semáforos
-        int tempoNoCiclo = (tempo + offset) % cicloTotal;
-
-        if (tempoNoCiclo < tempoVerde) {
-            corAtual = Cor.VERDE;
-        } else if (tempoNoCiclo < tempoVerde + tempoAmarelo) {
-            corAtual = Cor.AMARELO;
-        } else {
-            corAtual = Cor.VERMELHO;
-        }
+    public double getLatitude() {
+        return latitude;
     }
 
-    // Método para exibir o ID da interseção
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public String getIntersecaoId() {
+        return intersecaoId;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setCor(Cor cor) {
+        this.corAtual = cor;
+    }
+
+    public Cor getCorAtual() {
+        return corAtual;
+    }
+
     public void exibirEstado() {
-        System.out.println("Semáforo da interseção " + intersecaoId + " está " + corAtual);
+        System.out.println("Semáforo na posição (" + latitude + ", " + longitude +
+                ") da interseção " + intersecaoId + " (Grupo " + grupo + ") está " + corAtual);
     }
 }

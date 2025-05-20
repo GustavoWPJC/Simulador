@@ -1,11 +1,11 @@
 package estruturas;
 
-public class fila<T> {
+public class FilaEncadeada<T> {
     private No<T> primeiro;
     private No<T> ultimo;
     private int tamanho;
 
-    public fila() {
+    public FilaEncadeada() {
         this.primeiro = null;
         this.ultimo = null;
         this.tamanho = 0;

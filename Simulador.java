@@ -41,6 +41,7 @@ public class Simulador implements Serializable {
         }, 0, 1000);
     }
 
+
     public void pausar() {
         pausado = true;
     }

@@ -2,7 +2,6 @@ package cidade;
 
 import java.util.ArrayList;
 import java.util.List;
-import semaforo.Semaforo;
 
 public class Vertice {
     private String id;
