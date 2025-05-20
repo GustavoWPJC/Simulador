@@ -1,8 +1,8 @@
 package estruturas;
 
 public class fila<T> {
-    private No<T> ultimo;
     private No<T> primeiro;
+    private No<T> ultimo;
     private int tamanho;
 
     public fila() {
@@ -11,9 +11,21 @@ public class fila<T> {
         this.tamanho = 0;
     }
 
-    public void adicionar(T valor){
-        No<T> novo = new No<>(valor);
-        if (primeiro == null){
+    // Classe interna para os nós da fila
+    private static class No<T> {
+        T dado;
+        No<T> proximo;
+
+        No(T dado) {
+            this.dado = dado;
+            this.proximo = null;
+        }
+    }
+
+    // Enfileira um elemento no final
+    public void enfileirar(T elemento) {
+        No<T> novo = new No<>(elemento);
+        if (primeiro == null) {
             primeiro = novo;
             ultimo = novo;
         } else {
@@ -23,7 +35,8 @@ public class fila<T> {
         tamanho++;
     }
 
-    public T sair(){
+    // Desenfileira e retorna o primeiro elemento
+    public T desenfileirar() {
         if (primeiro == null) {
             return null;
         }
@@ -33,7 +46,7 @@ public class fila<T> {
             ultimo = null;
         }
         tamanho--;
-        return atual.valor;
+        return atual.dado;
     }
 
     public int tamanho() {
