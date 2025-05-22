@@ -1,25 +1,24 @@
 package semaforo;
 
 import semaforo.listener.Listener;
+
+import java.util.HashMap;
 import java.util.List;
-import java.util.*;
+import java.util.Map;
 
 public class ControladorSemaforos implements Listener {
-
     private Map<String, List<Semaforo>> semaforosPorIntersecao;
     private final int cicloTotal = 20;
+    private final int tempoAmarelo = 3;
 
-    //Contrutor modificada para receber uma lista de semáforos
-    public ControladorSemaforos(List<Semaforo> semaforos){
+    public ControladorSemaforos(List<Semaforo> semaforos) {
         semaforosPorIntersecao = new HashMap<>();
+
         for (Semaforo s : semaforos) {
-            semaforosPorIntersecao.computeIfAbsent(s.getIntersecaoId(), k -> new ArrayList<>()).add(s);
+            semaforosPorIntersecao
+                    .computeIfAbsent(s.getIntersecaoId(), k -> new java.util.ArrayList<>())
+                    .add(s);
         }
-    }
-
-
-    public void aplicarControle() {
-        System.out.println("Controle de semáforos aplicado.");
     }
 
     @Override
@@ -28,35 +27,27 @@ public class ControladorSemaforos implements Listener {
             int tempoGlobal = (int) dados;
             System.out.println("[Controlador] Tick " + tempoGlobal);
 
-            // 🚦 Percorre todas as interseções para atualizar os semáforos
             for (Map.Entry<String, List<Semaforo>> entry : semaforosPorIntersecao.entrySet()) {
-                String intersecao = entry.getKey();
                 List<Semaforo> semaforos = entry.getValue();
+
                 int tempoNoCiclo = tempoGlobal % cicloTotal;
 
-                System.out.println("🔄 Atualizando semáforos na interseção " + intersecao);
-
-                for (Semaforo s : semaforos) {
-                    if ("A".equals(s.getGrupo())) {
-                        if (tempoNoCiclo < 10) {    // Tick 0 a 9 → Verde
-                            s.setCor(Semaforo.Cor.VERDE);
-                        } else if (tempoNoCiclo < 12) { // Tick 10 a 11 → Amarelo
-                            s.setCor(Semaforo.Cor.AMARELO);
-                        } else {                  // Tick 12 a 19 → Vermelho
-                            s.setCor(Semaforo.Cor.VERMELHO);
-                        }
-                    } else if ("B".equals(s.getGrupo())) {
-                        if (tempoNoCiclo < 12) {    // Tick 0 a 11 → Vermelho
-                            s.setCor(Semaforo.Cor.VERMELHO);
-                        } else if (tempoNoCiclo < 18) { // Tick 12 a 17 → Verde
-                            s.setCor(Semaforo.Cor.VERDE);
-                        } else {                  // Tick 18 a 19 → Amarelo
-                            s.setCor(Semaforo.Cor.AMARELO);
-                        }
-                    }
-                    s.exibirEstado();
-                }
+                // Alternância de grupos com a nova lógica baseada em direção
+                boolean grupo1Verde = tempoNoCiclo < (cicloTotal / 2) - tempoAmarelo;
+                atualizarCruzamento(semaforos, grupo1Verde);
             }
         }
     }
+
+    private void atualizarCruzamento(List<Semaforo> semaforos, boolean grupo1Verde) {
+        for (Semaforo s : semaforos) {
+            if (s.getDirecao().equals("forward") || s.getDirecao().equals("backward")) {
+                s.setCor(grupo1Verde ? Semaforo.Cor.VERDE : Semaforo.Cor.VERMELHO);
+            } else {
+                s.setCor(!grupo1Verde ? Semaforo.Cor.VERDE : Semaforo.Cor.VERMELHO);
+            }
+            s.exibirEstado();
+        }
+    }
+
 }

@@ -6,21 +6,26 @@ public class Semaforo {
     }
 
     private String intersecaoId;
-    private String grupo;
     private Cor corAtual;
     private double latitude;
     private double longitude;
+    private String direcao;
 
-    public Semaforo(String intersecaoId, String grupo, double latitude, double longitude) {
+
+    public Semaforo(String intersecaoId, String direcao, double latitude, double longitude) {
         this.intersecaoId = intersecaoId;
-        this.grupo = grupo;
-        this.corAtual = Cor.VERMELHO; // Estado inicial
+        this.direcao = direcao;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.corAtual = Cor.VERMELHO;
     }
+
 
     public double getLatitude() {
         return latitude;
+    }
+    public String getDirecao() {
+        return direcao;
     }
 
     public double getLongitude() {
@@ -29,10 +34,6 @@ public class Semaforo {
 
     public String getIntersecaoId() {
         return intersecaoId;
-    }
-
-    public String getGrupo() {
-        return grupo;
     }
 
     public void setCor(Cor cor) {
@@ -45,6 +46,6 @@ public class Semaforo {
 
     public void exibirEstado() {
         System.out.println("Semáforo na posição (" + latitude + ", " + longitude +
-                ") da interseção " + intersecaoId + " (Grupo " + grupo + ") está " + corAtual);
+                ") da interseção " + intersecaoId + "na direção " + direcao + " está " + corAtual);
     }
 }

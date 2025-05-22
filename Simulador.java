@@ -28,8 +28,8 @@ public class Simulador implements Serializable {
         }
     }
 
-    public void iniciar() {
-        System.out.println("Simulação iniciada...");
+    public void iniciar(int tempoLimiteSegundos) {
+        System.out.println("Simulação iniciada por " + tempoLimiteSegundos + " segundos...");
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
@@ -37,9 +37,14 @@ public class Simulador implements Serializable {
                     tempoSimulado++;
                     atualizarSimulacao();
                 }
+                if (tempoSimulado >= tempoLimiteSegundos) {
+                    encerrar();
+                    System.out.println("🚦 Simulação encerrada após " + tempoLimiteSegundos + " segundos.");
+                }
             }
         }, 0, 1000);
     }
+
 
 
     public void pausar() {

@@ -3,6 +3,7 @@ import cidade.Grafo;
 import semaforo.Semaforo;
 import semaforo.ControladorSemaforos;
 
+import java.util.HashMap;
 
 
 public class Main {
@@ -27,11 +28,16 @@ public class Main {
 
             //Criar simulador e registrar controlador de semáforos
             Simulador simulador = new Simulador();
-            ControladorSemaforos ctrlSemaforos = new ControladorSemaforos(grafo.getSemaforos());
-            simulador.registrarListener(ctrlSemaforos);
+            ControladorSemaforos controlador = new ControladorSemaforos(grafo.getSemaforos());
+            simulador.registrarListener(controlador);
+
+
 
             //Iniciar a simulação
-            simulador.iniciar();
+
+            int tempoSimulacao = 10;
+            simulador.iniciar(tempoSimulacao);
+
 
 
         } catch (Exception e) {
