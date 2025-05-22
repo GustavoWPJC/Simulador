@@ -22,6 +22,11 @@ public class FilaEncadeada<T> {
         }
     }
 
+    public T obterPrimeiro() {
+        return (primeiro != null) ? primeiro.dado : null;
+    }
+
+
     // Enfileira um elemento no final
     public void enfileirar(T elemento) {
         No<T> novo = new No<>(elemento);

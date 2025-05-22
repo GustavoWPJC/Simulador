@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Vertice {
     private String id;
-    double latitude, longitude;
+    private double latitude, longitude;
+    private List<Aresta> arestas = new ArrayList<>();
     private List<semaforo.Semaforo> semaforos = new ArrayList<>();
-
 
     public Vertice(String id, double latitude, double longitude) {
         this.id = id;
@@ -15,41 +15,25 @@ public class Vertice {
         this.longitude = longitude;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
+    public double getLatitude() { return latitude; }
+    public double getLongitude() { return longitude; }
+    public List<semaforo.Semaforo> getSemaforos() { return semaforos; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public void adicionarSemaforo(semaforo.Semaforo s){
+    public void adicionarSemaforo(semaforo.Semaforo s) {
         semaforos.add(s);
     }
-    public List<semaforo.Semaforo> getSemaforos(){
-        return semaforos;
+
+    public void adicionarAresta(Aresta a) {
+        arestas.add(a);
     }
 
+    public List<Aresta> getArestas() {
+        return arestas;
+    }
 
     @Override
     public String toString() {
-        return "Intersecao{" + "id='" + id + '\'' + ", latitude=" + latitude + ", longitude=" + longitude + '}';
+        return "Intersecao{" + "id='" + id + "', latitude=" + latitude + ", longitude=" + longitude + '}';
     }
 }
-

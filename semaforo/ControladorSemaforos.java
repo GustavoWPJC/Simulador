@@ -1,6 +1,6 @@
 package semaforo;
 
-import semaforo.listener.Listener;
+import listener.Listener;
 
 import java.util.HashMap;
 import java.util.List;

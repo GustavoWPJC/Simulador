@@ -1,5 +1,7 @@
+
+
 import estruturas.ListaEncadeada;
-import semaforo.listener.Listener;
+import listener.Listener;
 
 import java.io.*;
 import java.util.Timer;
@@ -28,6 +30,7 @@ public class Simulador implements Serializable {
         }
     }
 
+    // Inicia a simulação por tempoLimiteSegundos (em segundos)
     public void iniciar(int tempoLimiteSegundos) {
         System.out.println("Simulação iniciada por " + tempoLimiteSegundos + " segundos...");
         timer = new Timer();
@@ -45,8 +48,6 @@ public class Simulador implements Serializable {
         }, 0, 1000);
     }
 
-
-
     public void pausar() {
         pausado = true;
     }
@@ -56,7 +57,9 @@ public class Simulador implements Serializable {
     }
 
     public void encerrar() {
-        if (timer != null) timer.cancel();
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     public void gravar(String caminho) throws IOException {
@@ -68,15 +71,14 @@ public class Simulador implements Serializable {
     public static Simulador carregar(String caminho) throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(caminho))) {
             Simulador sim = (Simulador) ois.readObject();
-            sim.timer = new Timer(); // recriar timer após desserialização
+            sim.timer = new Timer(); // recria o timer após desserialização
             return sim;
         }
     }
 
+    // Aqui, a cada tick, notificamos os listeners (que podem ser, por exemplo, o controlador de semáforos e o gerador de veículos)
     private void atualizarSimulacao() {
-        System.out.println("Minuto simulado: " + tempoSimulado);
-
-        // Dispara evento do tipo "TICK" com o tempo atual
+        System.out.println("Segundo simulado: " + tempoSimulado);
         notificar("TICK", tempoSimulado);
     }
 }
